@@ -1,0 +1,52 @@
+#######################################
+# Syntax Coloring Map For Test
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+MotionSystem	KEYWORD1
+BeltDrivenMotionSystem	KEYWORD1
+DriveScrewMotionSystem	KEYWORD1
+StepperDriver	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+setDirection	KEYWORD2
+flipDirection	KEYWORD2
+setStepsRemaining	KEYWORD2
+setMoving	KEYWORD2
+incrementStepPos	KEYWORD2
+startMovement	KEYWORD2
+startDelayedMovement	KEYWORD2
+disablePWM	KEYWORD2
+enablePWM	KEYWORD2
+getStepPos	KEYWORD2
+getMaxStepPos	KEYWORD2
+init	KEYWORD2
+isr	KEYWORD2
+isAbleToMoveTo	KEYWORD2
+setDestination	KEYWORD2
+stopMoving	KEYWORD2
+isHome	KEYWORD2
+isMoving	KEYWORD2
+isDelayed	KEYWORD2
+getDirection	KEYWORD2
+getPos	KEYWORD2
+
+convertPosToStepCount
+convertStepCountToPos
+getMaxStepPos
+
+######################################
+# Instances (KEYWORD2)
+#######################################
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
