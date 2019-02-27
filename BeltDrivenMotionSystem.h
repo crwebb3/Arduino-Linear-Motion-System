@@ -17,9 +17,10 @@ class BeltDrivenMotionSystem: public MotionSystem{
   float microstepping;
   float beltPitch;
   float pulleyToothCount;
+  float gearRatio;
   
   public:
-  BeltDrivenMotionSystem(float travelLength, unsigned int numberStepsPerTurn, unsigned int microstepping, unsigned int beltPitch, unsigned int pulleyToothCount);
+  BeltDrivenMotionSystem(float travelLength, unsigned int numberStepsPerTurn, unsigned int microstepping, unsigned int beltPitch, unsigned int pulleyToothCount,float gearRatio);
   
    /**
    *@param pos the position in milimeters that needs to be converted to a stepCount;

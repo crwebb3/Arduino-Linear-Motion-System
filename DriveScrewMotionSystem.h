@@ -16,12 +16,12 @@ class DriveScrewMotionSystem: public MotionSystem{
   float numberStepsPerTurn;
   float microstepping;
   float pitch;
-  float magicNumber=10.0;
+  float gearRatio;
   
   
   public:
-  DriveScrewMotionSystem(float travelLength, unsigned int numberStepsPerTurn, unsigned int microstepping, float diameter);
-  //DriveScrewMotionSystem(float travelLength, unsigned int numberStepsPerTurn, unsigned int microstepping, float pitch);
+  DriveScrewMotionSystem(float travelLength, unsigned int numberStepsPerTurn, unsigned int microstepping, float diameter, float gearRatio);
+
   
    /**
    *@param pos the position in milimeters that needs to be converted to a stepCount;

@@ -28,6 +28,7 @@
 #define NUMBER_STEPS_PER_TURN_X 200
 #define MICROSTEPPING_X 32
 #define DIAMETER_X 16.0
+#define GEAR_RATIO_X 10
 
 
 #define TRAVEL_LENGTH_Y 345.0
@@ -35,37 +36,39 @@
 #define MICROSTEPPING_Y 32
 #define BELT_PITCH_Y 2
 #define PULLEY_TOOTH_COUNT_Y 30
+#define GEAR_RATIO_Y 1
 
 #define TRAVEL_LENGTH_Z 300.0
 #define NUMBER_STEPS_PER_TURN_Z 200
 #define MICROSTEPPING_Z 32
 #define DIAMETER_Z 16.0
+#define GEAR_RATIO_Z 10
 
-DriveScrewMotionSystem motionSystemX(TRAVEL_LENGTH_X, NUMBER_STEPS_PER_TURN_X, MICROSTEPPING_X, DIAMETER_X);
-//BeltDrivenMotionSystem motionSystemY(TRAVEL_LENGTH_Y, NUMBER_STEPS_PER_TURN_Y, MICROSTEPPING_Y, BELT_PITCH_Y, PULLEY_TOOTH_COUNT_Y);
-//DriveScrewMotionSystem motionSystemZ(TRAVEL_LENGTH_Z, NUMBER_STEPS_PER_TURN_Z, MICROSTEPPING_Z, DIAMETER_Z);
+DriveScrewMotionSystem motionSystemX(TRAVEL_LENGTH_X, NUMBER_STEPS_PER_TURN_X, MICROSTEPPING_X, DIAMETER_X, GEAR_RATIO_X);
+BeltDrivenMotionSystem motionSystemY(TRAVEL_LENGTH_Y, NUMBER_STEPS_PER_TURN_Y, MICROSTEPPING_Y, BELT_PITCH_Y, PULLEY_TOOTH_COUNT_Y, GEAR_RATIO_Y);
+DriveScrewMotionSystem motionSystemZ(TRAVEL_LENGTH_Z, NUMBER_STEPS_PER_TURN_Z, MICROSTEPPING_Z, DIAMETER_Z, GEAR_RATIO_Z);
 
 /** The stepper motor driver for the X-axis.*/
 StepperDriver stepperX(ENABLE_X_PIN, DIR_X_PIN, STEP_X_PIN, HOME_X_PIN, &motionSystemX);
 
 /** The stepper motor driver for the Y-axis.*/
-//StepperDriver stepperY(ENABLE_Y_PIN, DIR_Y_PIN, STEP_Y_PIN, HOME_Y_PIN, &motionSystemY);
+StepperDriver stepperY(ENABLE_Y_PIN, DIR_Y_PIN, STEP_Y_PIN, HOME_Y_PIN, &motionSystemY);
 
 /** The stepper motor driver for the Z-axis.*/
-//StepperDriver stepperZ(ENABLE_Z_PIN, DIR_Z_PIN, STEP_Z_PIN, HOME_Z_PIN, &motionSystemZ);
+StepperDriver stepperZ(ENABLE_Z_PIN, DIR_Z_PIN, STEP_Z_PIN, HOME_Z_PIN, &motionSystemZ);
 
 void timerISR() {
   stepperX.isr();
-  //stepperY.isr();
-  //stepperZ.isr();
+  stepperY.isr();
+  stepperZ.isr();
 }
 
 void setup() {
   Timer3.initialize(PWM_PERIOD);
   Timer3.attachInterrupt(timerISR);
   stepperX.init();
-  //stepperY.init();
-  //stepperZ.init();
+  stepperY.init();
+  stepperZ.init();
 
   Serial.begin(BAUD_RATE);
   while (!Serial) {
