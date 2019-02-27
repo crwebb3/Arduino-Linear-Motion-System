@@ -1,22 +1,22 @@
 #include "DriveScrewMotionSystem.h"
 
   
-DriveScrewMotionSystem::DriveScrewMotionSystem(float travelLength, unsigned int numberStepsPerTurn, unsigned int microstepping, float diameter, float gearRatio){
+DriveScrewMotionSystem::DriveScrewMotionSystem(double travelLength, unsigned int numberStepsPerTurn, unsigned int microstepping, double diameter, double gearRatio){
   this->travelLength=travelLength;
-  this->numberStepsPerTurn=static_cast<float>(numberStepsPerTurn);
-  this->microstepping=static_cast<float>(microstepping);
+  this->numberStepsPerTurn=static_cast<double>(numberStepsPerTurn);
+  this->microstepping=static_cast<double>(microstepping);
   this->pitch=3.1415926535897932384626433832795*diameter;
   this->gearRatio=gearRatio;
   
 }
 
 
-unsigned long DriveScrewMotionSystem::convertPosToStepCount(float pos){
+unsigned long DriveScrewMotionSystem::convertPosToStepCount(double pos){
   return static_cast<unsigned long>((gearRatio*pos*numberStepsPerTurn*microstepping)/(pitch));
 }
 
-float DriveScrewMotionSystem::convertStepCountToPos(unsigned long stepCount){
-  return static_cast<float>((stepCount*pitch)/(microstepping*numberStepsPerTurn*gearRatio));   
+double DriveScrewMotionSystem::convertStepCountToPos(unsigned long stepCount){
+  return static_cast<double>((stepCount*pitch)/(microstepping*numberStepsPerTurn*gearRatio));   
 }
 
 unsigned long DriveScrewMotionSystem::getMaxStepPos(){

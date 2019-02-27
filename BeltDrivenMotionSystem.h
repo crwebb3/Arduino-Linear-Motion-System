@@ -12,26 +12,26 @@
 class BeltDrivenMotionSystem: public MotionSystem{
   private:
   
-  float travelLength;
-  float numberStepsPerTurn;
-  float microstepping;
-  float beltPitch;
-  float pulleyToothCount;
-  float gearRatio;
+  double travelLength;
+  double numberStepsPerTurn;
+  double microstepping;
+  double beltPitch;
+  double pulleyToothCount;
+  double gearRatio;
   
   public:
-  BeltDrivenMotionSystem(float travelLength, unsigned int numberStepsPerTurn, unsigned int microstepping, unsigned int beltPitch, unsigned int pulleyToothCount,float gearRatio);
+  BeltDrivenMotionSystem(double travelLength, unsigned int numberStepsPerTurn, unsigned int microstepping, unsigned int beltPitch, unsigned int pulleyToothCount,double gearRatio);
   
    /**
    *@param pos the position in milimeters that needs to be converted to a stepCount;
    *@return the number of micro steps needed for the system to move by 1mm.
    */ 
-  unsigned long convertPosToStepCount(float pos);
+  unsigned long convertPosToStepCount(double pos);
 
   /**
    * @param stepCount the number of steps that needs to be converted to a pos in milimeters
    */
-  float convertStepCountToPos(unsigned long stepCount);
+  double convertStepCountToPos(unsigned long stepCount);
 
   /**
    * @return the maximum step position given the motion systems travel length
